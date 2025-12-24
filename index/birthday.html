@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For You 💖</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+font-family:'Segoe UI',sans-serif;
+background:#000;
+color:#fff;
+height:100vh;
+overflow:hidden;
+}
+
+.page{
+display:none;
+position:relative;
+height:100vh;
+background-size:cover;
+background-position:center;
+}
+.page.active{display:block;}
+
+.page::before{
+content:'';
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.45);
+backdrop-filter:blur(2px);
+}
+
+.center{
+position:relative;
+z-index:2;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.gift-box{
+width:90%;
+max-width:550px;
+text-align:center;
+position:relative;
+cursor:pointer;
+animation:flyIn 1.6s ease forwards;
+}
+
+.box-lid{
+position:absolute;
+top:-35px;
+left:0;
+right:0;
+height:45px;
+background:linear-gradient(45deg,#ff69b4,#ffc1dc);
+border-radius:30px 30px 15px 15px;
+transform-origin:bottom;
+transition:transform 1s ease;
+}
+
+.ribbon{
+position:absolute;
+top:-60px;
+left:50%;
+transform:translateX(-50%);
+font-size:36px;
+}
+
+.box-body{
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(12px);
+border-radius:30px;
+padding:40px 30px;
+box-shadow:0 0 40px rgba(255,255,255,0.3);
+}
+
+.hint{opacity:0.8;font-style:italic;}
+.box-content{display:none;animation:fade 1s ease;}
+
+.gift-box.open .box-lid{transform:rotateX(-120deg);}
+.gift-box.open .box-content{display:block;}
+.gift-box.open .hint{display:none;}
+
+h1{font-size:2.2rem;margin-bottom:18px;}
+p{font-size:1.15rem;line-height:1.9;margin-bottom:20px;}
+
+button{
+margin-top:20px;
+padding:12px 30px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#ffb3d9,#ffd699);
+color:#000;
+font-size:1rem;
+cursor:pointer;
+box-shadow:0 0 30px rgba(255,255,255,0.35);
+}
+
+.heart {
+  position: absolute;
+  top: -30px;
+  font-size: 22px;
+  color: rgba(255,182,193,0.9);
+  animation: fall linear forwards;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+.secret-btn{
+  position:fixed;
+  top:50%;
+  right:10px;          /* END of page */
+  transform:translateY(-50%);
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  border:2px solid #fff;
+  background:linear-gradient(45deg,#ff69b4,#ffd699);
+  color:#000;
+  font-size:26px;
+  font-weight:bold;
+  cursor:pointer;
+  z-index:999;
+  box-shadow:
+    0 0 25px rgba(255,182,193,0.9),
+    0 0 45px rgba(255,214,153,0.7);
+  animation:pulse 1.6s infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(120vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse{
+  0%{transform:translateY(-50%) scale(1);}
+  50%{transform:translateY(-50%) scale(1.15);}
+  100%{transform:translateY(-50%) scale(1);}
+}
+
+</style>
+</head>
+
+<body>
+<audio id="bgMusic" src="audio.mp3" loop></audio>
+<!-- INTRO PAGE -->
+<div class="page active" style="background-image:url('photo1.jpeg')">
+<div class="center">
+<div class="gift-box open">
+<div class="box-lid"></div>
+<div class="ribbon">🎀</div>
+<div class="box-body">
+<div class="box-content" style="display:block">
+<h1>I have a surprise gift for you 🎁</h1>
+<button onclick="nextPage(event);playMusic()">Go to the surprise ➜</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<audio id="bgMusic" src="audio.mp3"></audio>
+
+
+
+<!-- PAGE 1 -->
+<div class="page" style="background-image:url('WhatsApp Image 2025-12-20 at 7.54.57 PM.jpeg')">
+<div class="center">
+<div class="gift-box" onclick="openBox(this)">
+<div class="box-lid"></div>
+<div class="ribbon">🎀</div>
+<div class="box-body">
+<div class="hint">Tap the gift 🎁</div>
+<div class="box-content">
+<h1>Hey Mutagoes Konjam Nillu 💫</h1>
+<p>Cake, candles, wishes… ellam varum. Unoda Next Year-aa Strat Pannuradhuku Munnadi, indha small journey unakkaga.</p>
+<p>Idha open pannumbodhu, konjam Smile Oda Open Pannu 💖</p>
+<button onclick="nextPage(event)">Start ➜</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" style="background-image:url('photo5.jpeg')">
+  <div class="center">
+    <div class="gift-box" onclick="openBox(this)">
+      <div class="box-lid"></div>
+      <div class="ribbon">🎀</div>
+      <div class="box-body">
+        <div class="hint">Tap the gift 🎁</div>
+        <div class="box-content">
+          <h1>Un Presence 🌸</h1>
+          <p>Nee irukkum bodhu surroundings konjam calm-aa irukkum.</p>
+          <p>Adhu romba natural-aa nadakkudhu.</p>
+          <button onclick="nextPage(event)">Next ➜</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" style="background-image:url('photo3.jpeg')">
+  <div class="center">
+    <div class="gift-box" onclick="openBox(this)">
+      <div class="box-lid"></div>
+      <div class="ribbon">🎀</div>
+      <div class="box-body">
+        <div class="hint">Tap the gift 🎁</div>
+        <div class="box-content">
+          <h1>Un Smile 😊</h1>
+          <p>Un smile-la oru Positive feeling irukku. Oru second-ku ellam slow aagura maadhiri.</p>
+          <p>Andha smile romba periya gift. Please adha romba rare-nu nenachiko.</p>
+          <p>Yaru kagga-yum Unoda Smile-aa Lose Panniradha 😊</p>
+          <button onclick="nextPage(event)">Next ➜</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" style="background-image:url('photo4.jpeg')">
+  <div class="center">
+    <div class="gift-box" onclick="openBox(this)">
+      <div class="box-lid"></div>
+      <div class="ribbon">🎀</div>
+      <div class="box-body">
+        <div class="hint">Tap the gift 🎁</div>
+        <div class="box-content">
+          <h1>Un Strength 💪</h1>
+          <p>Strength-na Power Illa. Namaku evulavy kastam vandhalum adha smile-oda handle pannuradhu.</p>
+          <p>Adhu unkitte romba clear-aa theriyudhu.</p>
+          <button onclick="nextPage(event)">Next ➜</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" style="background-image:url('photo5.jpeg')">
+  <div class="center">
+    <div class="gift-box" onclick="openBox(this)">
+      <div class="box-lid"></div>
+      <div class="ribbon">🎀</div>
+      <div class="box-body">
+        <div class="hint">Tap the gift 🎁</div>
+        <div class="box-content">
+          <h1>Una Pathi Sollanum-na 💌</h1>
+          <p>Nee easy-aa ellarukkum open aaga maatta.</p>
+          <p>Aana once open aana, romba true-aa iruppa.</p>
+          <button onclick="nextPage(event)">Next ➜</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" style="background-image:url('photo6.jpeg')">
+  <div class="center">
+    <div class="gift-box" onclick="openBox(this)">
+      <div class="box-lid"></div>
+      <div class="ribbon">🎀</div>
+      <div class="box-body">
+        <div class="hint">Tap the gift 🎁</div>
+        <div class="box-content">
+          <p>Ellaa feelings-um words-la solla mudiyadhu.</p>
+          <p>Indha pages ellam andha silence-la irundhu vandhadhu.</p>
+          <button onclick="nextPage(event)">Next ➜</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page" style="background-image:url('photo7.jpeg')">
+  <div class="center">
+    <div class="gift-box" onclick="openBox(this)">
+      <div class="box-lid"></div>
+      <div class="ribbon">🎀</div>
+      <div class="box-body">
+        <div class="hint">Tap the gift 🎁</div>
+        <div class="box-content">
+          <h1>Indha Varusham ✨</h1>
+          <p>Un life-la konjam peace adhigamaa irukkanum.</p>
+          <p>Unnai thedi happiness varanum.</p>
+          <button onclick="nextPage(event)">Next ➜</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 8 -->
+<div class="page" style="background-image:url('photo5.jpeg')">
+  <div class="center">
+    <div class="gift-box" onclick="openBox(this)">
+      <div class="box-lid"></div>
+      <div class="ribbon">🎀</div>
+      <div class="box-body">
+        <div class="hint">Tap the gift 🎁</div>
+        <div class="box-content">
+          <h1>Last-a Oru Vaarthai 🕯️</h1>
+          <p>Unakku oru small smile vandhirundhaa adhu podhum.</p>
+          <button onclick="nextPage(event)">Final ➜</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL PAGE -->
+<div class="page" style="background-image:url('WhatsApp Image 2025-12-20 at 7.54.57 PM.jpeg')">
+<div class="center">
+<div class="gift-box open">
+<button class="secret-btn" onclick="openPassword(event)">🔐</button>
+<div class="box-lid"></div>
+<div class="ribbon">🎀</div>
+<div class="box-body">
+<div class="box-content" style="display:block">
+<h1>Happy Birthday Mutagoes ❤️</h1>
+<p>Irrukuradhu oru life dhaan. Adha nalla enjoy pannu.</p>
+<p>Yenna ella marandhuradha okayy-va 😊</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SECRET PAGE 1 -->
+<div class="page" style="background-image:url('photo5.jpeg')">
+  <div class="center">
+    <div class="gift-box" onclick="openBox(this)">
+      <div class="box-lid"></div>
+      <div class="ribbon">🎀</div>
+      <div class="box-body">
+        <div class="hint">Tap the gift 🎁</div>
+        <div class="box-content">
+          <h1>🤫 Secret Note</h1>
+          <p contenteditable="true" style="outline:none;">
+Hi mutagoes!! Unkitta onnu sollanum... solla words konjam kammi dhaan, aana nee romba special. Nee pesura vidham-la oru softness iruku, nee sirikkura smile-la oru sweetness iruku, and overall-aa nee romba genuine person. Nee edhavum extra-aa try pannala, nee appadiye nee irukura, adhu dhaan unna ivlo lovely-aa make pannudhu.
+          </p>
+          <button onclick="nextPage(event)">Next ➜</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECRET PAGE 2 -->
+<div class="page" style="background-image:url('photo4.jpeg')">
+  <div class="center">
+    <div class="gift-box" onclick="openBox(this)">
+      <div class="box-lid"></div>
+      <div class="ribbon">🎀</div>
+      <div class="box-body">
+        <div class="hint">Tap the gift 🎁</div>
+        <div class="box-content">
+          <p contenteditable="true" style="outline:none;">
+Eppoyum happy-aa irru. Un happiness-aa yarukitayum vitu kuduthuradha. Indha ulagathula unmaiya happiness kudukuravanga romba kammi. Neraya per eppadi da innoru person-aa hurt pannalam, kayapaduthalam nu dhaan yosipanga. Adhellam nee kandukaama, un life-aa jolly-aa, cheerful-aa, happy-aa vaazhu.
+          </p>
+          <button onclick="nextPage(event)">Next ➜</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECRET PAGE 3 -->
+<div class="page" style="background-image:url('photo2.jpeg')">
+  <div class="center">
+    <div class="gift-box" onclick="openBox(this)">
+      <div class="box-lid"></div>
+      <div class="ribbon">🎀</div>
+      <div class="box-body">
+        <div class="hint">Tap the gift 🎁</div>
+        <div class="box-content">
+          <p contenteditable="true" style="outline:none;">
+Innonum onnu sollanum. Idhu naan munnaadiyum unkitta sonnadhu dhaan, aana marubadiyum sollren. Unkitta ippadi chat pannumbodhu enakku konjam guilty feeling varudhu. Nee ennai oru friend-aa paakura appo, naan unna love pannuradhu thappu-dha. Yaar enna sonnalum seri, idhu right nu sonnalum, wrong nu sonnalum — enakku idhu thappu nu dhaan thonudhu. Adhanaala naan ennaiye konjam konjam maathikitu, unna purely oru friend-aa paaka try pannitu dhaan irukken.
+          </p>
+          <button onclick="nextPage(event)">Next ➜</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECRET PAGE 4 -->
+<div class="page" style="background-image:url('WhatsApp Image 2025-12-20 at 7.54.57 PM.jpeg')">
+  <div class="center">
+    <div class="gift-box" onclick="openBox(this)">
+      <div class="box-lid"></div>
+      <div class="ribbon">🎀</div>
+      <div class="box-body">
+        <div class="hint">Tap the gift 🎁</div>
+        <div class="box-content">
+          <p contenteditable="true" style="outline:none;">
+Innum evlo naal ippadi pesuvom, ippadi irupom nu theriyala. Aana end of this journey kulla, naan unna oru nalla friend-aa accept pannippen nu enakkum konjam confidence iruku. Namma indha journey-aa oru nalla friends-aa dha mudippom-nu namburen.
+          </p>
+          <button onclick="nextPage(event)">Next ➜</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECRET PAGE 5 -->
+<div class="page" style="background-image:url('photo6.jpeg')">
+  <div class="center">
+    <div class="gift-box" onclick="openBox(this)">
+      <div class="box-lid"></div>
+      <div class="ribbon">🎀</div>
+      <div class="box-body">
+        <div class="hint">Tap the gift 🎁</div>
+        <div class="box-content">
+          <p contenteditable="true" style="outline:none;">
+Unakku enna prechana irundhaalum seri, yaar kittaiyum solla mudiyala, yaar kita poi polamburadhu nu yosikaadha. Yen kita vandhu polambu. Adha keka naan eppoyum iruppen. “Yaarum illa” nu oru naal kooda nenachiradha. Naan eppaiyum iruppen.
+          </p>
+          <button onclick="nextPage(event)">Next ➜</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECRET PAGE 6 -->
+<div class="page" style="background-image:url('photo3.jpeg')">
+  <div class="center">
+    <div class="gift-box" onclick="openBox(this)">
+      <div class="box-lid"></div>
+      <div class="ribbon">🎀</div>
+      <div class="box-body">
+        <div class="hint">Tap the gift 🎁</div>
+        <div class="box-content">
+          <p contenteditable="true" style="outline:none;">
+Nee enga irundhaalum, endha situation-la irundhaalum, thaniya irukken nu feel pannadha. Eppo-ella lonely-aa feel aagudho, illa edho random thoughts manasula suthudho, appo ella unaku share pannaum, yaruvkitaiyavadhu sollanum-nu thonuchuna na irruken yen kita vandhu dharalama sollu. Always naan free-aa dhaan iruppen, available-aa iruppen. un prechanai-ye ella keka irrupen. Naan andha naal sonnadhu dhaan, innaikum, eppaiyum — unna naan thaniya nikka vitura maaten.
+          </p>
+          <button onclick="nextPage(event)">Next ➜</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECRET PAGE 7 -->
+<div class="page" style="background-image:url('photo2.jpeg')">
+  <div class="center">
+    <div class="gift-box" onclick="openBox(this)">
+      <div class="box-lid"></div>
+      <div class="ribbon">🎀</div>
+      <div class="box-body">
+        <div class="hint">Tap the gift 🎁</div>
+        <div class="box-content">
+          <p contenteditable="true" style="outline:none;">
+Innonum oru mukkiyamaana vishayam — yaar enna nenapaanga nu romba yosikaadha. Nee edhavadhu thappu pannina, ellarum munnaadiyum unna thitti, asiga paduthinaalum, adhellam romba perusa yosika-dha. Ellarum life-la edho oru edathula asiga paduvaanga. Adhukaga feel pannitu irundha adhu waste of time. Inniku unna asiga paduthuravan, naalaikku avanum oru edathula asiga paduvaan. Suthi ninnu sirichavangalum adhe madhiri paduvaanga. So idhu ella oru visaiyam-nu feel pannitu irukka-dha. Stay strong. Stay positive.
+          </p>
+          <button onclick="nextPage(event)">Next ➜</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECRET PAGE 8 -->
+<div class="page" style="background-image:url('photo7.jpeg')">
+  <div class="center">
+    <div class="gift-box" onclick="openBox(this)">
+      <div class="box-lid"></div>
+      <div class="ribbon">🎀</div>
+      <div class="box-body">
+        <div class="hint">Tap the gift 🎁</div>
+        <div class="box-content">
+          <p contenteditable="true" style="outline:none;">
+Appa, Amma-va yarukagavum vituradha. Un life-la yaaru vandhaalum, ponaalum, Appa Amma dhaan permanent. Adhanaala avangala hurt pannura madhiri pesaadha. Avanga unna edhavadhu sonna, kovam varum — adhu natural dhaan. Aana adha konjam side-la vachitu yosichu paaru. Namma Appa Amma dhaane, nambala thitama vera yara thita poraga-nu. Appo unakke puriyum,nee kovam paduradhula perusa value illa nu.
+          </p>
+          <button onclick="nextPage(event)">Next ➜</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECRET PAGE 9 -->
+<div class="page" style="background-image:url('photo6.jpeg')">
+  <div class="center">
+    <div class="gift-box" onclick="openBox(this)">
+      <div class="box-lid"></div>
+      <div class="ribbon">🎀</div>
+      <div class="box-body">
+        <div class="hint">Tap the gift 🎁</div>
+        <div class="box-content">
+          <p contenteditable="true" style="outline:none;">
+Seri ma, naan solla nenachadhellam solliten nu nenaikiren. Happy-aa irru. Un life-aa enjoy pannu. Sad-aa irukaadha — sad-aa irukuradhula oru use-um illa. Enna nadandhaalum happy-aa irru.
+          </p>
+          <button onclick="nextPage(event)">Next ➜</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECRET PAGE 10 -->
+<div class="page" style="background-image:url('WhatsApp Image 2025-12-20 at 7.54.57 PM.jpeg')">
+  <div class="center">
+    <div class="gift-box" onclick="openBox(this)">
+      <div class="box-lid"></div>
+      <div class="ribbon">🎀</div>
+      <div class="box-body">
+        <div class="hint">Tap the gift 🎁</div>
+        <div class="box-content">
+          <p contenteditable="true" style="outline:none;">
+Enjoy your day… Once again, Happy Birthday mutagoes 😊💖.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- PASSWORD POPUP -->
+<div id="passwordLayer" style="
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(8px);
+z-index:999;
+justify-content:center;
+align-items:center;">
+<div style="
+background:rgba(255,255,255,0.15);
+padding:40px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 0 40px rgba(255,255,255,0.3);">
+<h1>🤫 Secret Access</h1>
+<input id="passInput" type="password" placeholder="Enter password"
+style="margin-top:20px;padding:12px 20px;border-radius:20px;border:none;outline:none;width:200px;text-align:center;">
+<br><br>
+<button onclick="checkPassword()">Unlock ➜</button>
+</div>
+</div>
+
+<script>
+const pages=document.querySelectorAll('.page');
+let current=0;
+
+function openBox(box){box.classList.add('open');}
+
+function nextPage(e){
+e.stopPropagation();
+if(current<pages.length-1){
+pages[current].classList.remove('active');
+current++;
+pages[current].classList.add('active');
+}
+}
+
+function playMusic(){document.getElementById('bgMusic').play();}
+
+function openPassword(e){
+e.stopPropagation();
+document.getElementById('passwordLayer').style.display='flex';
+}
+
+function checkPassword(){
+const pass=document.getElementById('passInput').value;
+if(pass==="mutagoes"){
+document.getElementById('passwordLayer').style.display='none';
+nextPage(new Event('click'));
+}else{
+alert("Wrong password 💔");
+}
+}
+
+function createHeart(){
+  const h = document.createElement('div');
+  h.className = 'heart';
+  h.innerHTML = '❤';
+
+  h.style.left = Math.random() * window.innerWidth + 'px';
+  h.style.animationDuration = (Math.random() * 4 + 6) + 's';
+
+  document.body.appendChild(h);
+
+  setTimeout(() => {
+    h.remove();
+  }, 12000);
+}
+
+setInterval(createHeart,300);
+</script>
+
+</body>
+</html>
